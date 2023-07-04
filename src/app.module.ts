@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './users/user.controller';
-import { UserModule } from './users/user.module';
+import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { TicketModule } from './ticket/ticket.module';
+import { SeatController } from './seat/seat.controller';
+import { SeatModule } from './seat/seat.module';
 
 @Module({
   imports: [
@@ -20,9 +22,11 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    TicketModule,
+    SeatModule
   ],
-  controllers: [AppController, UserController],
+  controllers: [AppController, UserController, UserController, SeatController],
   providers: [AppService],
 })
 export class AppModule {}
